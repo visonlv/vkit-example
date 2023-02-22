@@ -1,0 +1,36 @@
+IsDebug = true
+
+# 服务启动的
+[Server]
+Address = "0.0.0.0"
+HttpPort = 8080
+
+# 数据库配置
+[Mysql]
+Uri="root:123456@tcp(10.55.132.187:3306)/vkit?charset=utf8mb4&parseTime=True&loc=Local"
+MaxConn=100
+MaxIdel=10
+MaxLifeTime=3600
+
+[MinIO]
+DoMain = "http://127.0.0.1:9090"
+EndPoint = "127.0.0.1:9090"
+AccessKey = "root"
+AccessSecret = "123456"
+BucketName = "vkit"
+
+[Redis]
+Address = "127.0.0.1:6379"
+Password = "123456"
+Db = 0
+
+[MongoDB]
+DbName = "smzx" 
+WithTimeout = 9 
+URI = "mongodb://admin:123456@127.0.0.1:27017/?connect=direct" 
+
+[Nats]
+Url = "nats://127.0.0.1:4222"
+Username = "root"
+Password = "123456"
+

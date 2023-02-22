@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package vkit_example;
+
+option go_package = "./;vkit_example";
+import "validate/validate.proto";
+import "google/api/annotations.proto";
+
+// ----------------------登录登出管理--------------------------------------------
+service AuthService {
+  // 登录
+  rpc Login(LoginReq) returns (LoginResp) {
+    option (google.api.http) = {
+      post: "/rpc/vkit-example/AuthService.Login"
+      body: "*"
+    };
+  }
+  // 登出
+  rpc Logout(LogoutReq) returns (LogoutResp) {
+    option (google.api.http) = {
+      post: "/rpc/vkit-example/AuthService.Logout"
+      body: "*"
+    };
+  }
+}
+// 登录请求参数
+message LoginReq {
+  // 用户名 邮箱
+  string username = 1 [(validate.rules).string.min_len = 1];
+  // 密码
+  string password = 2 [(validate.rules).string.min_len = 1];
+}
+
+// 登录返回结果
+message LoginResp {
+  int32 code = 1;
+  string msg = 2;
+  string token = 3;
+}
+
+// 登出请求参数
+message LogoutReq {
+}
+
+// 登出请求返回
+message LogoutResp {
+  int32 code = 1;
+  string msg = 2;
+}
+
+// ----------------------用户管理--------------------------------------------
+service UserService{
+  // 添加用户
+  rpc Add(UserAddReq) returns (UserAddResp) {
+    option (google.api.http) = {
+      post: "/rpc/vkit-example/UserService.Add"
+      body: "*"
+    };
+  }
+  // 修改用户
+  rpc Update(UserUpdateReq) returns (UserUpdateResp) {
+    option (google.api.http) = {
+      post: "/rpc/vkit-example/UserService.Update"
+      body: "*"
+    };
+  }
+  // 分页查询用户列表
+  rpc Page(UserPageReq) returns (UserPageResp) {
+    option (google.api.http) = {
+      post: "/rpc/vkit-example/UserService.Page"
+      body: "*"
+    };
+  }
+  // 删除用户
+  rpc Del(UserDelReq) returns (UserDelResp) {
+    option (google.api.http) = {
+      post: "/rpc/vkit-example/UserService.Del"
+      body: "*"
+    };
+  }
+  // 用户详情
+  rpc Get(UserGetReq) returns (UserGetResp) {
+    option (google.api.http) = {
+      post: "/rpc/vkit-example/UserService.Get"
+      body: "*"
+    };
+  }
+}
+
+// 用户信息
+message User{
+  //用户id
+  string id = 1;  
+  //用户名称
+  string name = 2 [(validate.rules).string.min_len = 1]; 
+  //邮箱
+  string email = 3 [(validate.rules).string.min_len = 1]; 
+  //密码
+  string password = 4 [(validate.rules).string.min_len = 1]; 
+}
+
+// 添加用户请求参数
+message UserAddReq{
+  User item = 1 [(validate.rules).message.required = true];
+}
+
+// 添加用户返回结果
+message UserAddResp{
+  int32 code = 1;
+  string msg = 2;
+  string id = 3;  
+}
+
+// 分页用户请求参数
+message UserPageReq{
+  // 第几页，从1开始
+  int32 page_index = 1;
+  // 每页多少条
+  int32 page_size = 2 [(validate.rules).int32={lte: 10000, gte: 1}];
+  // 是否显示所有，0-我创建的，1-所有
+  int32 is_total = 3;
+  //名字
+  string name = 4;
+}
+
+// 分页用户返回结果
+message UserPageResp{
+  int32 code = 1;
+  string msg = 2;
+  int32 total = 3;
+  repeated User list=4;
+}
+
+// 更新用户请求参数
+message UserUpdateReq{
+  //用户id
+  string id =1;  
+  //用户名称
+  string name =2 [(validate.rules).string.min_len = 1]; 
+  //新密码
+  string new_password = 3; 
+}
+
+// 更新用户返回结果
+message UserUpdateResp{
+  int32 code = 1;
+  string msg = 2;
+  string id = 3; 
+}
+
+// 删除用户请求参数
+message UserDelReq{
+  string id = 1;
+}
+
+// 删除用户返回结果
+message UserDelResp{
+  int32 code = 1;
+  string msg = 2;
+  string id = 3; 
+}
+
+// 获取用户请求参数
+message UserGetReq{
+  string id = 1;
+}
+
+// 获取用户返回结果
+message UserGetResp{
+  int32 code = 1;
+  string msg = 2;
+  User item = 3;
+}
