@@ -11,6 +11,15 @@ const ()
 func InitTable() {
 	// 自动建表
 	app.Mysql.AutoMigrate(&UserModel{})
+	// 创建第一个测试用户
+	exist, _ := UserEmailExists(nil, "test")
+	if !exist {
+		UserAdd(nil, &UserModel{
+			Name:     "测试",
+			Email:    "test",
+			Password: "123456",
+		})
+	}
 }
 
 func getTx(tx *mysqlx.MysqlClient) *mysqlx.MysqlClient {

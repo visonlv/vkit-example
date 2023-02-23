@@ -76,8 +76,7 @@ func (the *UserService) Update(ctx context.Context, req *pb.UserUpdateReq, resp 
 }
 
 func (the *UserService) Page(ctx context.Context, req *pb.UserPageReq, resp *pb.UserPageResp) error {
-	userId := utils.GetUserIdFromContext(ctx)
-	list, totol, err := model.UserPage(nil, userId, req.Name, req.PageIndex, req.PageSize)
+	list, totol, err := model.UserPage(nil, "", req.Name, req.PageIndex, req.PageSize)
 	if err != nil {
 		resp.Code = errorsx.FAIL.Code
 		resp.Msg = err.Error()

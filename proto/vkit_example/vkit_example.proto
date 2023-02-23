@@ -117,10 +117,8 @@ message UserPageReq{
   int32 page_index = 1;
   // 每页多少条
   int32 page_size = 2 [(validate.rules).int32={lte: 10000, gte: 1}];
-  // 是否显示所有，0-我创建的，1-所有
-  int32 is_total = 3;
   //名字
-  string name = 4;
+  string name = 3;
 }
 
 // 分页用户返回结果
@@ -138,7 +136,7 @@ message UserUpdateReq{
   //用户名称
   string name =2 [(validate.rules).string.min_len = 1]; 
   //新密码
-  string new_password = 3; 
+  string new_password = 3 [(validate.rules).string.min_len = 1]; 
 }
 
 // 更新用户返回结果

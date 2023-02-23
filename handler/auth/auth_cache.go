@@ -37,6 +37,7 @@ func (a *Auth) ResetAll() {
 			"/rpc/vkit-example/UserService.Page",
 			"/rpc/vkit-example/UserService.Del",
 			"/rpc/vkit-example/UserService.Get",
+			"/rpc/vkit-example/AuthService.Logout",
 		},
 	}
 	a.Roles.Store("ADMIN", cc)

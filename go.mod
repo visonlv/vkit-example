@@ -4,7 +4,8 @@ require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/envoyproxy/protoc-gen-validate v0.1.0
 	github.com/golang-jwt/jwt v3.2.2+incompatible
-	github.com/visonlv/go-vkit v0.0.0-20230222070132-dd0c58928a94
+	// github.com/visonlv/go-vkit v0.0.0-20230222133626-4bcd3239fe42
+	github.com/visonlv/go-vkit v0.0.0-incompatible
 	google.golang.org/genproto v0.0.0-20210828152312-66f60bf46e71
 	google.golang.org/grpc v1.45.0
 	google.golang.org/protobuf v1.28.0
@@ -24,6 +25,7 @@ require (
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/google/uuid v1.1.2 // indirect
+	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -58,3 +60,5 @@ require (
 )
 
 go 1.17
+
+replace github.com/visonlv/go-vkit => ../go-vkit
