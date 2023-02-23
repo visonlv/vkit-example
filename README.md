@@ -2,8 +2,8 @@
 
 ## 1.1、安装golang环境
 ```
-wget https://golang.google.cn/dl/go1.19.linux-amd64.tar.gz
-sudo tar -xvzf go1.19.linux-amd64.tar.gz -C /usr/local/
+wget http://go.dev/dl/go1.17.9.linux-amd64.tar.gz
+sudo tar -xvzf go1.17.9.linux-amd64.tar.gz -C /usr/local/
 
 
 vi /etc/profile
